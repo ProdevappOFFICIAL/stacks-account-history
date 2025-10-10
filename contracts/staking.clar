@@ -27,7 +27,7 @@
   (let ((staker tx-sender)
         (current-staked (default-to u0 (map-get? staked-balances staker))))
     (asserts! (> amount u0) ERR-INVALID-AMOUNT)
-    (asserts! (>= current-staked amount) ERR-NO-STAKED-TOKENS)
+    (asserts! (>= current-staked amount) ERR-NO-STAKED-TOKENS)     
     (try! (as-contract (stx-transfer? amount tx-sender staker)))
     (map-set staked-balances staker (- current-staked amount))
     (ok amount)))
